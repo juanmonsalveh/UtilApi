@@ -1,4 +1,4 @@
-package com.utilapi;
+package com.utilapi.application;
 
 
 import org.slf4j.Logger;
