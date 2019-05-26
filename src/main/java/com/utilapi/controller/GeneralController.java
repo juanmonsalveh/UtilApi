@@ -14,8 +14,8 @@ import java.util.Calendar;
  * Created by dmanzano on 7/03/18.
  */
 public class GeneralController {
-    @Autowired
     protected ResponseObject responseObject;
+
     @Autowired
     protected Gson gson;
     @Autowired
@@ -25,21 +25,21 @@ public class GeneralController {
     protected String buildJsonResponse(Object any) throws ApiException {
         try {
             return new ResponseObject.Builder(any).build().toJson();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             throw new ApiException(ex.getMessage(), ErrorCode.INTERNAL_ERROR);
         }
     }
 
-    protected String buildRegisterResponse ( boolean successfulRegistered) {
+    protected String buildRegisterResponse(boolean successfulRegistered) {
         String response = null;
         try {
-            responseObject.setSelf(successfulRegistered);
-            responseObject.setStatus(Status.SUCCESS);
-            responseObject.setResponseCode("200");
-            responseObject.setTimeString(Calendar.getInstance().getTime().toString());
-            responseObject.setError(null);
+            ResponseObject responseObject = new ResponseObject.Builder(successfulRegistered)
+                    .setStatus(Status.SUCCESS)
+                    .setResponseCode("200")
+                    .setTimeString(Calendar.getInstance().getTime().toString())
+                    .build();
             response = gson.toJson(responseObject);
-        }catch(Exception ex){
+        } catch (Exception ex) {
             response = errorThrow.handleError(ex);
         }
         return response;

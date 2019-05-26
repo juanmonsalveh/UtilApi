@@ -7,22 +7,23 @@ import com.utilapi.controller.response.Status;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by dmanzano on 12/07/18.
  */
+@Service
 public class ErrorThrow {
 
     protected ResponseObject responseObject;
-    @Autowired
     protected Gson gson;
-    @Autowired
     private PrintWriteResponse printStackTrace;
     private static final Logger LOGGER = LoggerFactory.getLogger(ErrorThrow.class);
     private Boolean errorShowProd;
 
-    public ErrorThrow(String property) {
-        this.errorShowProd = Boolean.valueOf(property);
+    public ErrorThrow() {
+        this.errorShowProd = true;
+        gson = new Gson();
     }
 
 

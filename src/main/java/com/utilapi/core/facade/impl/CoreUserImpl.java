@@ -5,22 +5,35 @@ import com.utilapi.core.dto.UserDTO;
 import com.utilapi.core.facade.ICoreBank;
 import com.utilapi.core.facade.ICoreUser;
 import com.utilapi.persistence.dao.facade.IUserDAO;
+import com.utilapi.persistence.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public class UserCoreImpl implements ICoreUser {
+import java.util.Objects;
+
+@Service
+public class CoreUserImpl implements ICoreUser {
+
+    private final IUserDAO userDAO;
+    private final ICoreBank iCoreBank;
 
     @Autowired
-    private IUserDAO iCoreUser;
-    @Autowired
-    private ICoreBank iCoreBank;
+    public CoreUserImpl(IUserDAO userDAO, ICoreBank iCoreBank) {
+        this.userDAO = userDAO;
+        this.iCoreBank = iCoreBank;
+    }
 
     @Override
     public boolean registerUser(UserDTO bankUser) throws ApiException {
 
+        boolean response = false;
+
         if (UserDTO.validateAttributes(bankUser) && !bankUser.isBankEmployee()) {
-            boolean createdAccounts = iCoreBank.generateAccount(bankUser.getIdentity());
+            UserDTO user = userDAO.createUser(bankUser);
+//            boolean createdAccounts = iCoreBank.generateAccount(user.getIdentity());
+            response = Objects.nonNull(user);
         }
-        return false;
+        return response;
     }
 
     @Override

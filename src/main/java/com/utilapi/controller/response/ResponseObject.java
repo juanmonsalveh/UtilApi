@@ -2,13 +2,13 @@ package com.utilapi.controller.response;
 
 
 import com.google.gson.Gson;
+import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
 
 /**
  * Created by dagomanzano on 11/01/18.
  */
-
 public class ResponseObject {
 
     private Error error;

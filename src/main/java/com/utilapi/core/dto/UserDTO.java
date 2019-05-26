@@ -14,6 +14,18 @@ public class UserDTO {
     private String identity;
     private boolean isBankEmployee;
 
+    public UserDTO() {
+    }
+
+    public UserDTO(String name, String username, String password, String email, String identity, boolean isBankEmployee) {
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.identity = identity;
+        this.isBankEmployee = isBankEmployee;
+    }
+
     public String getName() {
         return name;
     }
