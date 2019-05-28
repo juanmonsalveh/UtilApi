@@ -7,7 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/bankclient/")
+@RequestMapping("/bankclient")
 public class BankClientController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BankClientController.class);
