@@ -2,26 +2,26 @@ package com.utilapi.core.facade.impl;
 
 import com.utilapi.core.facade.ICoreEmail;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class CoreEmailImpl implements ICoreEmail {
 
     @Autowired
     public JavaMailSender emailSender;
 
-    //    @Value("${spring.mail.username}") String fromEmail;
-     String fromEmail = "Easybank.2019@gmail.com";
+     @Value("${spring.mail.username}") String fromEmail;
 
     @Override
-    public void sendEmail() {
+    public void sendEmail(String sendTo, String subject, String textMessage) {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setFrom(fromEmail);
-            message.setTo("juanmonsalveh@gmail.com");
-            message.setSubject("Asunto");
-            message.setText("texto");
+            message.setTo(sendTo);
+            message.setSubject(subject);
+            message.setText(textMessage);
             emailSender.send(message);
     }
 }

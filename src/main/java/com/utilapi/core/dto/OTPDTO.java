@@ -5,6 +5,14 @@ public class OTPDTO {
     private String owner;
     private boolean isActive;
 
+    public OTPDTO(){}
+
+    public OTPDTO(String otpCode, String owner){
+        this.otpCode = otpCode;
+        this.owner = owner;
+        this.isActive = true;
+    }
+
     public String getOtpCode() {
         return otpCode;
     }

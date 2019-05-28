@@ -105,6 +105,13 @@
 			<version>2.0.1.RELEASE</version>
 		</dependency>
 		<!--End SMTP configuration dependencies-->
+		<!--Generate Random configuration dependencies-->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.7</version>
+		</dependency>
+		<!--End Generate Random configuration dependencies-->
 	</dependencies>
 
 	<build>
