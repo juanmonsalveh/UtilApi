@@ -1,7 +1,5 @@
 package com.utilapi.core.facade;
 
-import com.utilapi.core.dto.OTPDTO;
-
 import java.util.List;
 
 public interface ICoreOTPCode {

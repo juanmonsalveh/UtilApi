@@ -7,10 +7,10 @@ import com.utilapi.core.facade.ICoreEmail;
 import com.utilapi.core.facade.ICoreOTPCode;
 import com.utilapi.core.facade.ICoreUser;
 import com.utilapi.persistence.dao.facade.IUserDAO;
-import com.utilapi.persistence.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -19,11 +19,15 @@ public class CoreUserImpl implements ICoreUser {
 
     private final IUserDAO userDAO;
     private final ICoreBank iCoreBank;
+    private final ICoreEmail mailCore;
+    private final ICoreOTPCode otpCore;
 
     @Autowired
-    public CoreUserImpl(IUserDAO userDAO, ICoreBank iCoreBank) {
+    public CoreUserImpl(IUserDAO userDAO, ICoreBank iCoreBank, ICoreEmail mailCore, ICoreOTPCode otpCore) {
         this.userDAO = userDAO;
         this.iCoreBank = iCoreBank;
+        this.mailCore = mailCore;
+        this.otpCore = otpCore;
     }
 
     @Override
@@ -34,28 +38,24 @@ public class CoreUserImpl implements ICoreUser {
         if (UserDTO.validateAttributes(bankUser) && !bankUser.isBankEmployee()) {
              user = userDAO.createUser(bankUser);
 //            boolean createdAccounts = iCoreBank.generateAccount(user.getIdentity());
-            generateOTPsList(bankUser);
+            List<String> otpCodes = generateUserOTPsListAndSendItByEmail(bankUser);
             response = Objects.nonNull(user);
         }
         return response;
     }
 
-    private boolean generateOTPsList(UserDTO bankUser) {
-        ICoreOTPCode otpCore = new CoreOTPCodeImpl();
-        ICoreEmail mailCore = new CoreEmailImpl();
+    private List<String> generateUserOTPsListAndSendItByEmail(UserDTO bankUser) {
+        //ICoreOTPCode otpCore = new CoreOTPCodeImpl();
+        //ICoreEmail mailCore = new CoreEmailImpl();
+
         List<String> otpCodes = otpCore.generateOTPCodes(bankUser.getUsername());
+        String mailFrom = System.getProperty("spring.mail.username", "Easybank.2019@gmail.com");
+        String mailSubject = "Insecure Bank registration - " + new Date();
+        String mailBody = mailCore.buildOTPListMailBody(bankUser.getUsername(), otpCodes);
 
-        String message = "Welcome " + bankUser.getName() + "\n" + "These are the OTP Codes you will be using to autenticate your transactions: \n";
+        mailCore.sendEmail(mailFrom, bankUser.getEmail(), mailSubject, mailBody);
 
-        for (int i=0; i<otpCodes.size();i++) {
-            message.concat(otpCodes.get(i)).concat(", ");
-            if(i%4==0) message.concat("\n");
-        }
-
-        message.concat("Please be careful with those codes");
-        mailCore.sendEmail(bankUser.getEmail(), "Insecure Bank registration.", message);
-
-        return (otpCodes.size() == 100);
+        return otpCodes;
     }
 
 
