@@ -11,7 +11,7 @@ public class UserEntity {
 
     @Id
     @Column(name = "id")
-    private String identity;
+    private int identity;
     @Column(name = "user_name")
     private String name;
     @Column(name = "username")
@@ -26,7 +26,7 @@ public class UserEntity {
     protected UserEntity() {
     }
 
-    public UserEntity(String identity, String name, String username, String password, String email, boolean isBankEmployee) {
+    public UserEntity(int identity, String name, String username, String password, String email, boolean isBankEmployee) {
         this.identity = identity;
         this.name = name;
         this.username = username;
@@ -35,11 +35,11 @@ public class UserEntity {
         this.isBankEmployee = isBankEmployee;
     }
 
-    public String getIdentity() {
+    public int getIdentity() {
         return identity;
     }
 
-    public UserEntity setIdentity(String identity) {
+    public UserEntity setIdentity(int identity) {
         this.identity = identity;
         return this;
     }

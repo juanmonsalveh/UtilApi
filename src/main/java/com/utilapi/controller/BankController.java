@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/bank/")
+@RequestMapping("/bank")
 public class BankController extends GeneralController {
 
     private final ICoreUser iCoreUser;
@@ -23,7 +23,7 @@ public class BankController extends GeneralController {
         this.iCoreUser = iCoreUser;
     }
 
-    @PostMapping(value="/user/register", produces =  MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/user", produces =  MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity registerUser(@RequestBody UserDTO bankUser) {
         try {

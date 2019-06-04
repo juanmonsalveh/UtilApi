@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/bankemployee/")
+@RequestMapping("/bankemployee")
 public class BankEmployeeController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BankEmployeeController.class);

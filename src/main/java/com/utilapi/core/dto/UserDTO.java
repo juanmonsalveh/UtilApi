@@ -11,13 +11,13 @@ public class UserDTO {
     private String username;
     private String password;
     private String email;
-    private String identity;
+    private int identity;
     private boolean isBankEmployee;
 
     public UserDTO() {
     }
 
-    public UserDTO(String name, String username, String password, String email, String identity, boolean isBankEmployee) {
+    public UserDTO(String name, String username, String password, String email, int identity, boolean isBankEmployee) {
         this.name = name;
         this.username = username;
         this.password = password;
@@ -58,11 +58,11 @@ public class UserDTO {
         this.email = email;
     }
 
-    public String getIdentity() {
+    public int getIdentity() {
         return identity;
     }
 
-    public void setIdentity(String identity) {
+    public void setIdentity(int identity) {
         this.identity = identity;
     }
 
@@ -81,7 +81,7 @@ public class UserDTO {
                         && validator.validateEmail(userDTO.getEmail())
                         && validator.validateAlpha(userDTO.getName())
                         && validator.validateAlpha(userDTO.getUsername())
-                        && validator.validateNumeric(userDTO.getIdentity())
+//                        && validator.validateNumeric(userDTO.getIdentity())
                         && validator.validatePassword(userDTO.getPassword())  );
         if (!validation ) throw new ApiException("Error, wrong parameters...", ErrorCode.INTERNAL_ERROR);
         return validation;

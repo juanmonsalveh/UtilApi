@@ -1,15 +1,15 @@
 package com.utilapi.core.dto;
 
 public class AccountDTO {
-    private String accountNumber;
+    private int accountNumber;
     private String balance;
-    private String owner;
+    private int owner;
 
-    public String getAccountNumber() {
+    public int getAccountNumber() {
         return accountNumber;
     }
 
-    public void setAccountNumber(String accountNumber) {
+    public void setAccountNumber(int accountNumber) {
         this.accountNumber = accountNumber;
     }
 
@@ -21,11 +21,11 @@ public class AccountDTO {
         this.balance = balance;
     }
 
-    public String getOwner() {
+    public int getOwner() {
         return owner;
     }
 
-    public void setOwner(String owner) {
+    public void setOwner(int owner) {
         this.owner = owner;
     }
 }
