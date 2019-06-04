@@ -7,14 +7,14 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/bankclient")
+@RequestMapping("/bank-client")
 public class BankClientController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BankClientController.class);
 
     @GetMapping(value="/transaction", produces =  MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String getAllUserTransactions(@RequestParam String sharedkey) {
+    public String getAllUserTransactions(@RequestParam String username) {
 
         return "";
     }
