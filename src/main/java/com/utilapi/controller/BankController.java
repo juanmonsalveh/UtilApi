@@ -23,7 +23,7 @@ public class BankController extends GeneralController {
         this.iCoreUser = iCoreUser;
     }
 
-    @PostMapping(value="/user/register", produces =  MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/user", produces =  MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity registerUser(@RequestBody UserDTO bankUser) {
         try {

@@ -37,6 +37,7 @@ public class CoreUserImpl implements ICoreUser {
 
         if (UserDTO.validateAttributes(bankUser) && !bankUser.isBankEmployee()) {
              user = userDAO.createUser(bankUser);
+             //TODO generate and store accounts
 //            boolean createdAccounts = iCoreBank.generateAccount(user.getIdentity());
             List<String> otpCodes = generateUserOTPsListAndSendItByEmail(bankUser);
             response = Objects.nonNull(user);
