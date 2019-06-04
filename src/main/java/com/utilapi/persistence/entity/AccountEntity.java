@@ -11,17 +11,17 @@ public class AccountEntity {
 
     @Id
     @Column(name = "id", nullable = false)
-    private String id;
+    private int id;
     @Column(name = "balance", nullable = false)
     private String balance;
-    @Column(name = "owner", nullable = false)
-    private String owner;
+    @Column(name = "owner_id", nullable = false)
+    private int owner;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -33,11 +33,11 @@ public class AccountEntity {
         this.balance = balance;
     }
 
-    public String getOwner() {
+    public int getOwner() {
         return owner;
     }
 
-    public void setOwner(String owner) {
+    public void setOwner(int owner) {
         this.owner = owner;
     }
 }
