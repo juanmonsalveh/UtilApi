@@ -3,11 +3,13 @@ package com.utilapi.persistence.dao.facade;
 import com.utilapi.core.dto.TransactionDTO;
 import com.utilapi.persistence.entity.TransactionEntity;
 
+import java.util.List;
+
 public interface ITransactionDAO {
 
     String setTransaction(TransactionDTO transactionDTO);
 
-    TransactionEntity retrieveByUser(String originAccount);
+    List<TransactionDTO> retrieveByUser(String originAccount);
 
     Iterable<TransactionEntity> retrieveAll();
 

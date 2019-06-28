@@ -30,6 +30,25 @@ public class TransactionEntity {
     @Column(name = "date", nullable = false)
     private Date date;
 
+    @Column(name = "state", nullable = false)
+    private int state;
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
     public String getTransactionId() {
         return transactionId;
     }

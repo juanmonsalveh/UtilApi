@@ -5,5 +5,6 @@ import com.utilapi.core.dto.AccountDTO;
 public interface IAccountDAO {
 
     AccountDTO getAccount(String id);
+
     int insertAccount(AccountDTO accountDTO);
 }

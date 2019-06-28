@@ -9,6 +9,15 @@ public class TransactionDTO {
     private String ammount;
     private String otpCode;
     private Date date;
+    private int state;
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
 
     public String getTransactionId() {
         return transactionId;
