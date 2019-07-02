@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface TransactionRepository extends CrudRepository<TransactionEntity, String> {
 
-    List<TransactionEntity> retrieveByUser(String user);
+    List<TransactionEntity> findByOriginAccount(String originAccount);
 
 }

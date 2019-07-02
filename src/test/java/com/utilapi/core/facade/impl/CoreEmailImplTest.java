@@ -21,6 +21,8 @@ public class CoreEmailImplTest {
 
     @Autowired
     private ICoreEmail mailsender;
+    @Autowired
+    private ICoreOTPCode coreOTPCode;
 
     @Autowired
     public JavaMailSender emailSender;
@@ -42,10 +44,9 @@ public class CoreEmailImplTest {
     }
     @Test
     public void send100OTPsByEmail() throws Exception{
-        ICoreOTPCode otpCore = new CoreOTPCodeImpl();
         String bankUser = "Any User";
         String subject = "Test subject - " + new Date();
-        List<String> otpCodes = otpCore.generateOTPCodes(bankUser);
+        List<String> otpCodes = coreOTPCode.generateOTPCodes(bankUser);
         ICoreEmail mailCore = new CoreEmailImpl();
         String mailBody = mailCore.buildOTPListMailBody(bankUser, otpCodes);
         mailsender.sendEmail(sendFrom, sendTo,subject,mailBody);

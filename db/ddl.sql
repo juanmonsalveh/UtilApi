@@ -35,6 +35,5 @@ CREATE TABLE transactions (
   amount              INTEGER      NOT NULL,
   otp_code            INTEGER NOT NULL,
   FOREIGN KEY (otp_code) REFERENCES otp (otp_code),
-  date                TIMESTAMP    NOT NULL,
-   id                  INT          NOT NULL
+  date                TIMESTAMP    NOT NULL
 );

@@ -25,7 +25,7 @@ public class TransactionDao implements ITransactionDAO {
 
     @Override
     public List<TransactionDTO> retrieveByUser(String originAccount) {
-        List<TransactionEntity> transactionEntities = transactionRepository.retrieveByUser(originAccount);
+        List<TransactionEntity> transactionEntities = transactionRepository.findByOriginAccount(originAccount);
         List<TransactionDTO> transactionDTOS = transactionEntities.stream().map(transactionEntity -> buildTransactionDTO(transactionEntity)).collect(Collectors.toList());
         return transactionDTOS;
     }
